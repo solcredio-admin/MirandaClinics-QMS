@@ -44,23 +44,6 @@ function populateRooms(data) {
   });
 }
 
-function getCurrentNumber(card) {
-  return Number(card.querySelector('.current-number').value || 0);
-}
-
-async function getLatestRoomNumber(roomKey) {
-  const response = await fetch(API_BASE);
-  if (!response.ok) {
-    throw new Error(`Get failed: ${response.status}`);
-  }
-  const data = await response.json();
-  const roomData = data[roomKey];
-  if (!roomData) {
-    throw new Error(`Room ${roomKey} not found in API response`);
-  }
-  return Number(roomData.number);
-}
-
 async function updateRoom(roomKey, number, card) {
   if (number < 0) {
     number = 0;
@@ -92,36 +75,15 @@ async function updateRoom(roomKey, number, card) {
   }
 }
 
-async function adjustRoom(roomKey, card, delta) {
-  try {
-    const currentNumber = await getLatestRoomNumber(roomKey);
-    const nextNumber = Math.max(currentNumber + delta, 0);
-    await updateRoom(roomKey, nextNumber, card);
-  } catch (error) {
-    console.error(error);
-    showStatus(`Unable to read the latest number for ${roomKey}.`, 'error');
-  }
-}
-
 roomCards.forEach((card) => {
   const roomKey = card.dataset.room;
-  const decrementButton = card.querySelector('.decrement');
-  const incrementButton = card.querySelector('.increment');
   const setButton = card.querySelector('.set-number');
   const customNumberInput = card.querySelector('.custom-number');
-
-  decrementButton.addEventListener('click', () => {
-    adjustRoom(roomKey, card, -1);
-  });
-
-  incrementButton.addEventListener('click', () => {
-    adjustRoom(roomKey, card, 1);
-  });
 
   setButton.addEventListener('click', async () => {
     const value = Number(customNumberInput.value);
     if (Number.isNaN(value) || value < 0) {
-      showStatus('Enter a valid non-negative number before setting.', 'error');
+      showStatus('Enter a valid non-negative number before sending.', 'error');
       return;
     }
     await updateRoom(roomKey, value, card);
