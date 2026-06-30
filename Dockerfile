@@ -1,16 +1,13 @@
-FROM nginx:alpine
+FROM node:20-alpine
 
-# Remove default nginx static content
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /app
 
-# Copy site files into nginx html directory
-COPY . /usr/share/nginx/html
+COPY package*.json ./
+RUN npm install --omit=dev
 
-# Add a reverse proxy config so the browser can reach the queue API
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY . .
 
-# Expose default HTTP port
-EXPOSE 80
+ENV PORT=3000
+EXPOSE 3000
 
-# Start nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
