@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miranda Clinic Queue Control</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-title">Miranda Clinic</div>
+      <div class="brand-subtitle">Queue Management System</div>
+    </div>
+    <button id="loginButton" class="login-btn">Login</button>
+  </header>
+
+  <main class="page-shell">
+    <div class="status-banner" id="statusBanner">Loading queue data...</div>
+    <section class="panel">
+      <h1>Admin Control Panel</h1>
+      <p>Update queue numbers for each room</p>
+    </section>
+
+    <section class="rooms-grid">
+      <article class="room-card" data-room="room1">
+        <h2>Room 1</h2>
+        <label>Current Number</label>
+        <input type="text" class="current-number" readonly />
+        <label>Doctor</label>
+        <input type="text" class="doctor-name" readonly />
+        <div class="button-row">
+          <button class="decrement">-1</button>
+          <button class="increment">+1</button>
+          <button class="set-number">Set</button>
+        </div>
+        <input type="number" class="custom-number" min="0" placeholder="Enter new number" />
+      </article>
+
+      <article class="room-card" data-room="room2">
+        <h2>Room 2</h2>
+        <label>Current Number</label>
+        <input type="text" class="current-number" readonly />
+        <label>Doctor</label>
+        <input type="text" class="doctor-name" readonly />
+        <div class="button-row">
+          <button class="decrement">-1</button>
+          <button class="increment">+1</button>
+          <button class="set-number">Set</button>
+        </div>
+        <input type="number" class="custom-number" min="0" placeholder="Enter new number" />
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
