@@ -77,8 +77,20 @@ async function updateRoom(roomKey, number, card) {
 
 roomCards.forEach((card) => {
   const roomKey = card.dataset.room;
+  const decrementButton = card.querySelector('.decrement');
+  const incrementButton = card.querySelector('.increment');
   const setButton = card.querySelector('.set-number');
   const customNumberInput = card.querySelector('.custom-number');
+
+  decrementButton.addEventListener('click', async () => {
+    const current = Number(card.querySelector('.current-number').value || 0);
+    await updateRoom(roomKey, Math.max(current - 1, 0), card);
+  });
+
+  incrementButton.addEventListener('click', async () => {
+    const current = Number(card.querySelector('.current-number').value || 0);
+    await updateRoom(roomKey, current + 1, card);
+  });
 
   setButton.addEventListener('click', async () => {
     const value = Number(customNumberInput.value);
