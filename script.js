@@ -1,4 +1,4 @@
-const API_BASE = 'https://mc-api.solcredio.net/api/queue';
+const API_BASE = '/api/queue';
 const statusBanner = document.getElementById('statusBanner');
 const roomCards = Array.from(document.querySelectorAll('.room-card'));
 
