@@ -4,7 +4,7 @@ const roomCards = Array.from(document.querySelectorAll('.room-card'));
 
 function formatNumber(value) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) {
-    return '--';
+    return '---';
   }
   return String(Number(value)).padStart(3, '0');
 }
@@ -38,8 +38,8 @@ function populateRooms(data) {
     if (!roomData) {
       return;
     }
-    card.querySelector('.current-number').value = formatNumber(roomData.number);
-    card.querySelector('.doctor-name').value = roomData.doctor || '';
+    card.querySelector('.current-number').textContent = formatNumber(roomData.number);
+    card.querySelector('.doctor-name').textContent = roomData.doctor || '';
     card.querySelector('.custom-number').value = '';
   });
 }
@@ -65,7 +65,7 @@ async function updateRoom(roomKey, number, card) {
     if (!result.success || !result.room) {
       throw new Error('Unexpected API response');
     }
-    card.querySelector('.current-number').value = formatNumber(result.room.number);
+    card.querySelector('.current-number').textContent = formatNumber(result.room.number);
     showStatus(`Updated ${result.room.room} to ${formatNumber(result.room.number)}.`);
   } catch (error) {
     console.error(error);
@@ -83,12 +83,12 @@ roomCards.forEach((card) => {
   const customNumberInput = card.querySelector('.custom-number');
 
   decrementButton.addEventListener('click', async () => {
-    const current = Number(card.querySelector('.current-number').value || 0);
+    const current = Number(card.querySelector('.current-number').textContent || 0);
     await updateRoom(roomKey, Math.max(current - 1, 0), card);
   });
 
   incrementButton.addEventListener('click', async () => {
-    const current = Number(card.querySelector('.current-number').value || 0);
+    const current = Number(card.querySelector('.current-number').textContent || 0);
     await updateRoom(roomKey, current + 1, card);
   });
 

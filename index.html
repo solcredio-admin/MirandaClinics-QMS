@@ -28,45 +28,81 @@
     </a>
   </header>
 
-  <main class="page-shell">
+  <main>
     <div class="status-banner" id="statusBanner">Loading queue data...</div>
-    <section class="panel">
+
+    <div class="page-title">
       <h1>Admin Control Panel</h1>
       <p>Update queue numbers for each room</p>
-    </section>
+    </div>
 
-    <section class="rooms-grid">
+    <section class="rooms">
       <article class="room-card" data-room="room1">
-        <h2>Room 1</h2>
-        <label>Current Number</label>
-        <input type="text" class="current-number" readonly />
-        <label>Doctor</label>
-        <input type="text" class="doctor-name" readonly />
-        <div class="button-row">
-          <button class="decrement">-1</button>
-          <button class="increment">+1</button>
-          <button class="set-number">Send to API</button>
+        <div class="room-header">
+          <div class="room-name">Room 1</div>
+          <div class="status">OPEN</div>
         </div>
-        <label>New Number</label>
-        <input type="number" class="custom-number" min="0" placeholder="Enter new number" />
+
+        <div class="info">
+          <strong class="doctor-name">Dr. Kenneth Miranda</strong><br>
+          <p>Internal medicine, general consultation, routine checkups, medical certificates, and follow-up consultations.</p>
+        </div>
+
+        <div class="serving">
+          <small>CURRENTLY SERVING</small>
+          <div class="queue-number current-number">---</div>
+        </div>
+
+        <div class="controls">
+          <label>Adjust Queue Number</label>
+          <div class="button-row">
+            <button class="decrement">−</button>
+            <button class="increment">+</button>
+          </div>
+          <label>Set Custom Number</label>
+          <div class="custom-input-row">
+            <input type="number" class="custom-number" min="0" placeholder="Enter number" />
+            <button class="set-number">Send</button>
+          </div>
+        </div>
       </article>
 
       <article class="room-card" data-room="room2">
-        <h2>Room 2</h2>
-        <label>Current Number</label>
-        <input type="text" class="current-number" readonly />
-        <label>Doctor</label>
-        <input type="text" class="doctor-name" readonly />
-        <div class="button-row">
-          <button class="decrement">-1</button>
-          <button class="increment">+1</button>
-          <button class="set-number">Send to API</button>
+        <div class="room-header">
+          <div class="room-name">Room 2</div>
+          <div class="status">OPEN</div>
         </div>
-        <label>New Number</label>
-        <input type="number" class="custom-number" min="0" placeholder="Enter new number" />
+
+        <div class="info">
+          <strong class="doctor-name">Dr. Kath Miranda</strong><br>
+          <p>Pediatrics, child wellness examinations, vaccinations, developmental assessments and follow-up visits.</p>
+        </div>
+
+        <div class="serving">
+          <small>CURRENTLY SERVING</small>
+          <div class="queue-number current-number">---</div>
+        </div>
+
+        <div class="controls">
+          <label>Adjust Queue Number</label>
+          <div class="button-row">
+            <button class="decrement">−</button>
+            <button class="increment">+</button>
+          </div>
+          <label>Set Custom Number</label>
+          <div class="custom-input-row">
+            <input type="number" class="custom-number" min="0" placeholder="Enter number" />
+            <button class="set-number">Send</button>
+          </div>
+        </div>
       </article>
     </section>
   </main>
+
+  <footer>
+    <h1>Now Serving</h1>
+    <p>Please proceed when your number is displayed. Thank you.</p>
+  </footer>
 
   <script src="script.js" defer></script>
 </body>
